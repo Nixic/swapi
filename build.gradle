@@ -28,40 +28,47 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    implementation 'com.auth0:java-jwt:4.0.0'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    implementation 'org.modelmapper:modelmapper:3.1.0'
 
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-common
-    implementation 'io.springfox:springfox-swagger-common:3.0.0'
     implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"
     implementation "io.springfox:springfox-swagger2:${springFoxVersion}"
     implementation "io.springfox:springfox-swagger-ui:${springFoxVersion}"
     implementation "org.springdoc:springdoc-openapi-ui:${springdocOpenapiVersion}"
 
-
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
     implementation "com.fasterxml.jackson.core:jackson-annotations:${fasterXmlJacksonAnnotationsVersion}"
     implementation "org.openapitools:jackson-databind-nullable:${jacksonDatabindNullableVersion}"
+
+    implementation 'org.flywaydb:flyway-core:9.1.6'
+
+    runtimeOnly 'com.h2database:h2:2.1.210'
 
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
 
 task generateOpenApiSpec(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
     generatorName = "spring"
     inputSpec = "$projectDir/src/main/resources/static/api.yaml".toString()
     outputDir = "$buildDir/generated".toString()
     apiPackage = "com.example.swapi"
-    invokerPackage = "com.example.utils"
-    modelPackage = "com.example.model"
+    invokerPackage = "com.example.swapi.utils"
+    modelPackage = "com.example.swapi.model"
     typeMappings = [
             'bigdecimal': 'java.math.BigDecimal'
     ]
     configOptions = [
-            dateLibrary    : "java8",
-            delegatePattern: "true"
+            dateLibrary    : 'java8',
+            delegatePattern: 'true',
+            useSpringJpa: 'true'
     ]
 
     additionalProperties = [
