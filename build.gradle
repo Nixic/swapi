@@ -1,6 +1,6 @@
 plugins {
     id "idea"
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'org.openapi.generator' version "6.0.1"
     id 'java'
@@ -15,11 +15,11 @@ repositories {
 }
 
 ext {
-    set('swaggerAnnotationsVersion', "2.2.2")
-    set('springFoxVersion', "2.3.0")
+    set('swaggerAnnotationsVersion', "2.2.4")
+    set('springFoxVersion', "3.0.0")
     set('fasterXmlJacksonAnnotationsVersion', "2.13.3")
     set('jacksonDatabindNullableVersion', "0.2.3")
-    set('springdocOpenapiVersion', "1.6.11")
+    set('springdocOpenapiVersion', "1.6.12")
     set('lombokVersion', "1.18.24")
 }
 
@@ -31,8 +31,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
-    implementation 'com.auth0:java-jwt:4.0.0'
+
+    implementation 'com.auth0:java-jwt:4.2.1'
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.google.guava:guava:31.1-jre'
+
 
     implementation 'org.modelmapper:modelmapper:3.1.0'
 
